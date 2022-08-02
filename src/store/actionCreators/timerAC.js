@@ -4,6 +4,7 @@ import {
   UPDATE_QUEUE,
   REMOVE_TIMER_FROM_QUEUE,
   ADD_CURRENT_LOG,
+  CLEAR_LOGS,
 } from "../actions/timerActions";
 
 export const addTimerToQueue = (timerDelay) => (dispatch, getState) => {
@@ -48,4 +49,8 @@ export const removeTimerFromQueue = () => {
 
 export const addCurrentLog = (data) => {
   return { type: ADD_CURRENT_LOG, payload: data };
+};
+
+export const clearLog = () => {
+  return { type: CLEAR_LOGS };
 };
