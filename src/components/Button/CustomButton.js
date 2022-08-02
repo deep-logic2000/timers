@@ -19,12 +19,12 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const CustomButton = (props) => {
-  const { children, handleClick, type, style, className } = props;
+  const { children, handleClick, type, style, className, color } = props;
 
   console.log('handleClick', handleClick);
   
   return (
-    <ColorButton variant="contained" className={styles.button} onClick={handleClick}>{children}</ColorButton>
+    <ColorButton variant="contained" className={styles.button} style={{backgroundColor: color}} onClick={handleClick}>{children}</ColorButton>
   );
 };
 
