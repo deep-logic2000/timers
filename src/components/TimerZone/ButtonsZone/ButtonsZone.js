@@ -12,7 +12,6 @@ const ButtonsZone = () => {
     const dispatch = useDispatch();
 
     const handleAddTimer = (timerDelay) => {
-        console.log(timerDelay);
         dispatch(addTimerToQueue(timerDelay));
     }
 
@@ -21,7 +20,7 @@ const ButtonsZone = () => {
       <CustomButton className="button" children="1 sec" handleClick={()=>handleAddTimer(1)} />
       <CustomButton className="button" children="2 sec" handleClick={()=>handleAddTimer(2)} />
       <CustomButton className="button" children="3 sec" handleClick={()=>handleAddTimer(3)} />
-      <CustomButton className="button" children="Clear" handleClick={()=>dispatch(clearLog())} />
+      <CustomButton color="#fc6858" className="button" children="Clear" handleClick={()=>dispatch(clearLog())} />
     </div>
   );
 };

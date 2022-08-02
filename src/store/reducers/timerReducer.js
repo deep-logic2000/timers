@@ -4,6 +4,7 @@ import {
   REMOVE_TIMER_FROM_QUEUE,
   ADD_CURRENT_LOG,
   ADD_TIME_PRESSED_BUTTON,
+  CLEAR_LOGS,
 } from "../actions/timerActions";
 
 const initialValues = {
@@ -27,9 +28,7 @@ const userReducer = (state = initialValues, { type, payload } = {}) => {
       return { ...state, queue: payload };
     }
     case REMOVE_TIMER_FROM_QUEUE: {
-      const queue = state.queue;
       const newQueue = state.queue.slice(1);
-      console.log("newQueue after remove", newQueue);
       return { ...state, queue: newQueue };
     }
     case ADD_CURRENT_LOG: {
@@ -43,7 +42,11 @@ const userReducer = (state = initialValues, { type, payload } = {}) => {
       const newTimesOfPressedButtons = state.timesOfPressedButtons.slice(1);
       return { ...state, logs: newLogs, timesOfPressedButtons: newTimesOfPressedButtons };
     }
-
+    
+    case CLEAR_LOGS: {
+      return { ...state, logs: [] };
+    }
+    
     default:
       return state;
   }
