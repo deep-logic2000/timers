@@ -1,7 +1,6 @@
 import {
   ADD_TIMER_TO_QUEUE,
   ADD_TIME_PRESSED_BUTTON,
-  UPDATE_QUEUE,
   REMOVE_TIMER_FROM_QUEUE,
   ADD_CURRENT_LOG,
   CLEAR_LOGS,
@@ -9,8 +8,6 @@ import {
 
 export const addTimerToQueue = (timerDelay) => (dispatch, getState) => {
   const state = getState();
-  
-  console.log("timerDelay from timer AC", timerDelay);
   dispatch(addTimeOfPressedButton());
   dispatch({ type: ADD_TIMER_TO_QUEUE, payload: timerDelay });
   if (state.timer.queue.length === 0) {
@@ -26,13 +23,12 @@ export const addTimeOfPressedButton = () => {
 };
 
 
-export const startTimer = (timerDelay) => (dispatch, getState) => {
+export const startTimer = () => (dispatch, getState) => {
   const date = new Date();
   const state = getState();
   if (state.timer.queue.length > 0) {
     const startTime = date.toTimeString().split(' ')[0];
     const buttonNumber = state.timer.queue[0].toString();
-    console.log("startTime", startTime);
     const timerDelay = state.timer.queue[0];
     setTimeout(() => {
         dispatch(addCurrentLog({startTime, buttonNumber}));

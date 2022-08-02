@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import { ButtonsZone, LogsZone } from "../TimerZone";
+import AboutDeveloperTab from "../AboutDeveloperTab/AboutDeveloperTab";
+import { startTimer } from "../../store/actionCreators/timerAC";
+
+import styles from "./NavTabs.module.scss";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -21,7 +25,7 @@ const TabPanel = (props) => {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -44,9 +48,12 @@ function a11yProps(index) {
 const NavTabs = () => {
   const [value, setValue] = React.useState(0);
   const logs = useSelector((state) => state.timer.logs);
+  const dispatch = useDispatch();
 
-  console.log("logs", logs);
   useEffect(() => {}, [logs]);
+  useEffect(() => {
+    dispatch(startTimer());
+  }, [dispatch]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -58,24 +65,26 @@ const NavTabs = () => {
         sx={{
           borderBottom: 1,
           borderColor: "divider",
-          backgroundColor: "#f7fcff",
+          backgroundColor: "#85c2ff",
+          width: "100%",
         }}
       >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          centered
         >
           <Tab label="Timers" {...a11yProps(0)} />
           <Tab label="About Developer" {...a11yProps(1)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} className={styles.tabTimers}>
         <ButtonsZone />
         <LogsZone logs={logs} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        About developer
+      <TabPanel value={value} index={1} className={styles.tabAboutDeveloper}>
+        <AboutDeveloperTab />
       </TabPanel>
     </Box>
   );

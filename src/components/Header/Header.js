@@ -4,9 +4,9 @@ import TabPanel from "../NavTabs/NavTabs";
 
 const Header = () => {
   return (
-    <>
+    <div>
       <TabPanel />
-    </>
+    </div>
   );
 };
 
