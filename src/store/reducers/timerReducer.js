@@ -36,6 +36,8 @@ const userReducer = (state = initialValues, { type, payload } = {}) => {
       const timeOfPressedButton = state.timesOfPressedButtons[0];
       const date = new Date();
       const logShowTime = date.toLocaleTimeString();
+      const passedTime = logShowTime - timeOfPressedButton;
+      console.log("passedTime", passedTime);
       const logObj = {button: payload.buttonNumber, timeOfPressedButton: timeOfPressedButton, endTime: logShowTime};
       const newLogs = [...state.logs, logObj];
       const newTimesOfPressedButtons = state.timesOfPressedButtons.slice(1);
