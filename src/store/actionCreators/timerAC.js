@@ -20,7 +20,7 @@ export const addTimerToQueue = (timerDelay) => (dispatch, getState) => {
 
 export const addTimeOfPressedButton = () => {
     const date = new Date();
-  const timeOfPressedButton = date.toLocaleTimeString();
+  const timeOfPressedButton = date.toTimeString().split(' ')[0];
     return { type: ADD_TIME_PRESSED_BUTTON, payload: timeOfPressedButton };
 
 };
@@ -30,7 +30,7 @@ export const startTimer = (timerDelay) => (dispatch, getState) => {
   const date = new Date();
   const state = getState();
   if (state.timer.queue.length > 0) {
-    const startTime = date.toLocaleTimeString();
+    const startTime = date.toTimeString().split(' ')[0];
     const buttonNumber = state.timer.queue[0].toString();
     console.log("startTime", startTime);
     const timerDelay = state.timer.queue[0];

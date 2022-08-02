@@ -34,15 +34,19 @@ const userReducer = (state = initialValues, { type, payload } = {}) => {
     case ADD_CURRENT_LOG: {
       const timeOfPressedButton = state.timesOfPressedButtons[0];
       const date = new Date();
-      const logShowTime = date.toLocaleTimeString();
-      const logObj = {button: payload.buttonNumber, timeOfPressedButton: timeOfPressedButton, endTime: logShowTime};
+      console.log('date', date);
+      const logShowTime = date.toTimeString().split(' ')[0];
+      const timeOfPressedButtonInSec = timeOfPressedButton.split(':')[0] * 3600 + parseInt(timeOfPressedButton.split(':')[1]*60) + parseInt(timeOfPressedButton.split(':')[2]);
+      const logShowTimeInSec = logShowTime.split(':')[0] * 3600 + parseInt(logShowTime.split(':')[1]*60) + parseInt(logShowTime.split(':')[2]);
+      const difference = logShowTimeInSec - timeOfPressedButtonInSec;
+      const logObj = {button: payload.buttonNumber, timeOfPressedButton: timeOfPressedButton, endTime: logShowTime, difference: difference};
       const newLogs = [...state.logs, logObj];
       const newTimesOfPressedButtons = state.timesOfPressedButtons.slice(1);
       return { ...state, logs: newLogs, timesOfPressedButtons: newTimesOfPressedButtons };
     }
     
     case CLEAR_LOGS: {
-      return { ...state, logs: [] };
+      return { ...state, logs: [], timesOfPressedButtons: [], queue: [] };
     }
     
     default:
