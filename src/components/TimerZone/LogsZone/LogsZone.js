@@ -14,7 +14,7 @@ const LogsZone = (props) => {
       <Grid container spacing={2}>
         <Grid item xs={11}>
           {logs && logs.map((log, index) => (
-            <Typography key={index} sx={{color: 'grey'}}>{`Button № ${log.button}: ${log.endTime} - ${log.timeOfPressedButton} (${log.difference})`}</Typography>
+            <Typography key={index} sx={{color: 'grey'}}>{`Button № ${log.button}: ${log.endTime} - ${log.timeOfPressedButton} (${log.difference} sec)`}</Typography>
           ))}
         </Grid>
       </Grid>
