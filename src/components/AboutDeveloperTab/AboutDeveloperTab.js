@@ -17,7 +17,6 @@ const AboutDeveloperTab = () => {
         </Grid>
         <Grid item xs={8}>
           <Typography>This project is created by Kirill Nazarov</Typography>
-          <Typography>This test task is made for Devpower company</Typography>
         </Grid>
       </Grid>
     </Box>
